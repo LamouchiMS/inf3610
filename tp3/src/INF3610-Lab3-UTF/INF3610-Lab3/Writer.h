@@ -15,7 +15,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-class Writer : public InterfaceWrite
+class Writer : public sc_module, public InterfaceWrite
 {
 	public:
 		// Ports
@@ -28,7 +28,7 @@ class Writer : public InterfaceWrite
 		// Destructor
 		~Writer();
 
-		void write(unsigned int offset, unsigned int data);
+		virtual void Write(unsigned int offset, unsigned int data);
 
 	private:
 

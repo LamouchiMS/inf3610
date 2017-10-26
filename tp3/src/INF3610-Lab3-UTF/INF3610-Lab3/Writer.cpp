@@ -10,7 +10,7 @@
 //	Constructor
 //
 ///////////////////////////////////////////////////////////////////////////////
-Writer::Writer(sc_module_name name)
+Writer::Writer(sc_module_name name): sc_module(name)
 /* À compléter */
 {
 	SC_METHOD(Writer::write);
@@ -30,7 +30,7 @@ Writer::~Writer()
 	*/
 }
 
-void Writer::write(unsigned int offset, unsigned int data) {
+void Writer::Write(unsigned int offset, unsigned int data) {
 	dataPortRAM->Write(offset, data);
 }
 

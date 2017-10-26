@@ -30,7 +30,7 @@ Reader::~Reader()
 	*/
 }
 
-unsigned int Reader::read(unsigned int offset) {
+unsigned int Reader::Read(unsigned int offset) {
 	return dataPortRAM->Read(offset);
 }
 
