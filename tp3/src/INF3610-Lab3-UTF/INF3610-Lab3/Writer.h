@@ -28,6 +28,8 @@ class Writer : public InterfaceWrite
 		// Destructor
 		~Writer();
 
+		void write(unsigned int offset, unsigned int data);
+
 	private:
 
 	/*

@@ -15,7 +15,7 @@
 //	Class Reader
 //
 ///////////////////////////////////////////////////////////////////////////////
-class Reader : public InterfaceRead
+class Reader : sc_module, InterfaceRead
 {
 	public:
 		// Ports
@@ -28,8 +28,9 @@ class Reader : public InterfaceRead
 		// Destructor
 		~Reader();
 
+		virtual unsigned int read(unsigned int);
+
 	private:
-	
 	/*
 		
 	À compléter

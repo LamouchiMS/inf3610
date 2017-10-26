@@ -10,14 +10,10 @@
 //	Constructor
 //
 ///////////////////////////////////////////////////////////////////////////////
-Reader::Reader(sc_module_name name)
+Reader::Reader(sc_module_name name): sc_module(name)
 /* À compléter */
 {
-	/*
-
-	À compléter
-
-	*/
+	SC_METHOD(Reader::read);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,9 +30,9 @@ Reader::~Reader()
 	*/
 }
 
-	/*
+unsigned int Reader::read(unsigned int offset) {
+	return dataPortRAM->Read(offset);
+}
 
-	À compléter
 
-	*/
 

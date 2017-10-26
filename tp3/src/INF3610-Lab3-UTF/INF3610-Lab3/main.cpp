@@ -6,6 +6,7 @@
 #include <systemc.h>
 #include "Sobel.h"
 #include "Reader.h"
+#include "Writer.h"
 #include "DataRAM.h"
 
 #define RAMSIZE 0x200000
@@ -26,14 +27,16 @@ int sc_main(int arg_count, char **arg_value)
 	// Components
 	Sobel Sobel("Sobel");
 	Reader Reader("Reader");
+	Writer Writer("Writer");
 	DataRAM DataRAM("DataRAM", "image.mem", RAMSIZE, false);
 	//TODO: Creation module Writer
 
 	// Connexions
 	Reader.dataPortRAM(DataRAM);
+	Writer.dataPortRAM(DataRAM);
 	Sobel.readPort(Reader);
+	Sobel.writePort(Writer);
 	//TODO: Ajouter connexions pour Writer
-	//Sobel.writePort(Writer);
 	// ...
 
 
