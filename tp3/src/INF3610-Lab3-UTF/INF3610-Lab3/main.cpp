@@ -28,16 +28,13 @@ int sc_main(int arg_count, char **arg_value)
 	Sobel Sobel("Sobel");
 	Reader Reader("Reader");
 	Writer Writer("Writer");
-	DataRAM DataRAM("DataRAM", "image.mem", RAMSIZE, false);
-	//TODO: Creation module Writer
+	DataRAM DataRAM("DataRAM", "image.mem", RAMSIZE, true);
 
 	// Connexions
 	Reader.dataPortRAM(DataRAM);
 	Writer.dataPortRAM(DataRAM);
 	Sobel.readPort(Reader);
 	Sobel.writePort(Writer);
-	//TODO: Ajouter connexions pour Writer
-	// ...
 
 
 	// Démarrage de l'application

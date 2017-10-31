@@ -13,7 +13,7 @@
 Writer::Writer(sc_module_name name): sc_module(name)
 /* À compléter */
 {
-	SC_METHOD(Writer::write);
+	//SC_METHOD(Writer::Write);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -23,19 +23,9 @@ Writer::Writer(sc_module_name name): sc_module(name)
 ///////////////////////////////////////////////////////////////////////////////
 Writer::~Writer()
 {
-	/*
-
-	À compléter
-
-	*/
 }
 
 void Writer::Write(unsigned int offset, unsigned int data) {
 	dataPortRAM->Write(offset, data);
 }
 
-/*
-
-À compléter
-
-*/

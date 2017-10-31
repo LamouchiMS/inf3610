@@ -11,14 +11,9 @@
 //	Constructeur
 //
 ///////////////////////////////////////////////////////////////////////////////
-Sobel::Sobel( sc_module_name name )
-/* À compléter */
+Sobel::Sobel( sc_module_name name ) : sc_module(name)
 {
-	/*
-	
-	À compléter
-	
-	*/
+	SC_THREAD(thread);
 }
 
 
@@ -39,11 +34,44 @@ Sobel::~Sobel()
 ///////////////////////////////////////////////////////////////////////////////
 void Sobel::thread(void)
 {
-	/*
-	
-	À compléter
-	
-	*/
+	int width = readPort->Read(0);
+	int length = readPort->Read(4);
+	int size = width * length;
+	uint8_t* image = (uint8_t*) malloc(size * sizeof(uint8_t));
+	uint8_t* res = (uint8_t*) malloc(size * sizeof(uint8_t));
+
+	for (int i = 8; i < size + 8; i += 4) {
+		unsigned int data = readPort->Read(i);
+		image[i - 8] = data >> 24;
+		image[i - 7] = (data << 8) >> 24;
+		image[i - 6] = (data << 16) >> 24;
+		image[i - 5] = (data << 24) >> 24;
+	}
+
+	for (int i = 0; i < size; i++) {
+		//cout << atoi((const char*)&image[i]);
+	}
+
+	for (int i = width; i < size - width; i++) {
+		if (!(i % width == 0 || (i % width) == width - 1)) {
+			res[i] = sobel_operator(i, width, image);
+			//cout << atoi((const char*)&res[i]);
+		} else {
+			res[i] = 0;
+		}
+	}
+
+	for (int i = 0; i < width; i++) {
+		res[i] = 0;
+		res[i + size - width] = 0;
+	}
+
+	for (int i = 0; i < size; i += 4) {
+		unsigned int data = res[i] << 24 + res[i + 1] << 16 + res[i + 2] << 8 + res[i + 3];
+		writePort->Write(i + 8, data);
+	}
+	sc_stop();
+	wait();
 
 }
 

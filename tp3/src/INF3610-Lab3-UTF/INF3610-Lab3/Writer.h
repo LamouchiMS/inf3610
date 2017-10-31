@@ -32,10 +32,4 @@ class Writer : public sc_module, public InterfaceWrite
 
 	private:
 
-	/*
-
-	À compléter
-
-	*/
-
 };

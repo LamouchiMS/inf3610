@@ -9,7 +9,7 @@
 #include <systemc.h>
 #include <stdio.h>
 #include "InterfaceRead.h"
-#include "InterfaceWrite.h"		à décommenter au moment opportun
+#include "InterfaceWrite.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////

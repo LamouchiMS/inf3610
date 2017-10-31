@@ -31,11 +31,7 @@ class Reader : public sc_module, public InterfaceRead
 		virtual unsigned int Read(unsigned int);
 
 	private:
-	/*
-		
-	À compléter
-		
-	*/
+
 
 };
 
