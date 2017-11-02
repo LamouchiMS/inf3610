@@ -1,0 +1,4 @@
+﻿  Sobel.cpp
+c:\users\lcham\onedrive\documents\polytechnique\inf3610\inf3610\tp3\src\inf3610-lab3-at-ca\inf3610-lab3\sobel.cpp(102): warning C4554: '<<': check operator precedence for possible error; use parentheses to clarify precedence
+  INF3610-Lab3.vcxproj -> C:\Users\lcham\OneDrive\Documents\Polytechnique\INF3610\inf3610\tp3\src\INF3610-Lab3-AT-CA\Debug\INF3610-Lab3-AT-CA.exe
+  INF3610-Lab3.vcxproj -> C:\Users\lcham\OneDrive\Documents\Polytechnique\INF3610\inf3610\tp3\src\INF3610-Lab3-AT-CA\Debug\INF3610-Lab3-AT-CA.pdb (Partial PDB)

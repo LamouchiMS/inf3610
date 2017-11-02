@@ -67,7 +67,7 @@ void Sobel::thread(void)
 	//Obtenir la longueur et la largeur
 	int width, length;
 	read(0, width);
-	read(0, length);
+	read(4, length);
 	
 	int size = width * length;
 	uint8_t* image = (uint8_t*)malloc(size * sizeof(uint8_t));
