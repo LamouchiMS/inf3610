@@ -1,4 +1,9 @@
-﻿  Sobel.cpp
-x:\bureau\inf3610tp3\tp3\src\inf3610-lab3-utf\inf3610-lab3\sobel.cpp(70): warning C4554: '<<' : vérifiez la priorité des opérateurs comme cause possible d'erreur ; utilisez des parenthèses pour rendre plus claires les priorités
-  INF3610-Lab3.vcxproj -> X:\Bureau\INF3610TP3\tp3\src\INF3610-Lab3-UTF\Debug\INF3610-Lab3-UTF.exe
-  INF3610-Lab3.vcxproj -> X:\Bureau\INF3610TP3\tp3\src\INF3610-Lab3-UTF\Debug\INF3610-Lab3-UTF.pdb (Partial PDB)
+﻿  Writer.cpp
+  Sobel.cpp
+c:\users\lcham\onedrive\documents\polytechnique\inf3610\inf3610\tp3\src\inf3610-lab3-utf\inf3610-lab3\sobel.cpp(69): warning C4018: '<': signed/unsigned mismatch
+c:\users\lcham\onedrive\documents\polytechnique\inf3610\inf3610\tp3\src\inf3610-lab3-utf\inf3610-lab3\sobel.cpp(70): warning C4554: '<<': check operator precedence for possible error; use parentheses to clarify precedence
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  INF3610-Lab3.vcxproj -> C:\Users\lcham\OneDrive\Documents\Polytechnique\INF3610\inf3610\tp3\src\INF3610-Lab3-UTF\Debug\INF3610-Lab3-UTF.exe
+  INF3610-Lab3.vcxproj -> C:\Users\lcham\OneDrive\Documents\Polytechnique\INF3610\inf3610\tp3\src\INF3610-Lab3-UTF\Debug\INF3610-Lab3-UTF.pdb (Partial PDB)

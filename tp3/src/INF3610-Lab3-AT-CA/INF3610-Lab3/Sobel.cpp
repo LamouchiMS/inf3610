@@ -11,14 +11,9 @@
 //	Constructeur
 //
 ///////////////////////////////////////////////////////////////////////////////
-Sobel::Sobel( sc_module_name name )
-/* À compléter */
+Sobel::Sobel( sc_module_name name ) : sc_module(name)
 {
-	/*
-	
-	À compléter
-	
-	*/
+	SC_THREAD(thread);
 }
 
 
@@ -36,6 +31,30 @@ Sobel::~Sobel()
 	*/
 }
 
+void Sobel::read(unsigned int add, int& output) {
+	address.write(add);
+	requestRead.write(true);
+	do {
+		wait(clk->posedge_event());
+	} while (!ack.read());
+
+	output = data.read();
+	requestRead.write(false);
+	wait(clk->posedge_event());
+}
+
+void Sobel::write(unsigned int add, unsigned int dataW) {
+	address.write(add);
+	data.write(dataW);
+	requestWrite.write(true);
+	do {
+		wait(clk->posedge_event());
+	} while (!ack.read());
+
+	requestWrite.write(false);
+	wait(clk->posedge_event());
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -44,11 +63,47 @@ Sobel::~Sobel()
 ///////////////////////////////////////////////////////////////////////////////
 void Sobel::thread(void)
 {
-	/*
+
+	//Obtenir la longueur et la largeur
+	int width, length;
+	read(0, width);
+	read(0, length);
 	
-	À compléter
-	
-	*/
+	int size = width * length;
+	uint8_t* image = (uint8_t*)malloc(size * sizeof(uint8_t));
+	uint8_t* res = (uint8_t*)malloc(size * sizeof(uint8_t));
+
+	for (int i = 8; i < size + 8; i += 4) {
+		int pixels;
+		read(i, pixels);
+
+		image[i - 8] = pixels >> 24;
+		image[i - 7] = (pixels << 8) >> 24;
+		image[i - 6] = (pixels << 16) >> 24;
+		image[i - 5] = (pixels << 24) >> 24;
+	}
+
+	for (int i = width; i < size - width; i++) {
+		if (!(i % width == 0 || (i % width) == width - 1)) {
+			res[i] = sobel_operator(i, width, image);
+			//cout << atoi((const char*)&res[i]);
+		}
+		else {
+			res[i] = 0;
+		}
+	}
+
+	for (int i = 0; i < width; i++) {
+		res[i] = 0;
+		res[i + size - width] = 0;
+	}
+
+	for (int i = 0; i < size; i += 4) {
+		unsigned int data = res[i] << 24 + res[i + 1] << 16 + res[i + 2] << 8 + res[i + 3];
+		write(i + 8, data);
+	}
+	sc_stop();
+	wait();
 
 }
 

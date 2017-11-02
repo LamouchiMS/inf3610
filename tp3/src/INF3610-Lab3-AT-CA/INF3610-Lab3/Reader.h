@@ -14,7 +14,7 @@
 //	Class Reader
 //
 ///////////////////////////////////////////////////////////////////////////////
-class Reader /* À compléter */
+class Reader : public sc_module
 {
 	public:
 		// Ports

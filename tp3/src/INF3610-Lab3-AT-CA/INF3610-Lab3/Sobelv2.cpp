@@ -11,14 +11,9 @@
 //	Constructeur
 //
 ///////////////////////////////////////////////////////////////////////////////
-Sobelv2::Sobelv2( sc_module_name name )
-/* À compléter */
+Sobelv2::Sobelv2( sc_module_name name ) : sc_module(name)
 {
-	/*
-	
-	À compléter
-	
-	*/
+	SC_THREAD(thread);
 }
 
 

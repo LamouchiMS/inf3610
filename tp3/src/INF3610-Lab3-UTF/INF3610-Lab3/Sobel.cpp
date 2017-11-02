@@ -66,7 +66,7 @@ void Sobel::thread(void)
 		res[i + size - width] = 0;
 	}
 
-	for (int i = 0; i < size; i += 4) {
+	for (unsigned int i = 0; i < size; i += 4) {
 		unsigned int data = res[i] << 24 + res[i + 1] << 16 + res[i + 2] << 8 + res[i + 3];
 		writePort->Write(i + 8, data);
 	}

@@ -103,7 +103,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>X:\Bureau\INF3610TP3\tp3\src\systemc-2.3.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\lcham\OneDrive\Documents\Polytechnique\INF3610\inf3610\tp3\src\systemc-2.3.1\src;X:\Bureau\INF3610TP3\tp3\src\systemc-2.3.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);_XKEYCHECK_H;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
@@ -111,7 +111,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>X:\Bureau\INF3610TP3\tp3\src\systemc-2.3.1\msvc140\SystemC\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\lcham\OneDrive\Documents\Polytechnique\INF3610\inf3610\tp3\src\systemc-2.3.1\msvc140\SystemC\Debug;X:\Bureau\INF3610TP3\tp3\src\systemc-2.3.1\msvc140\SystemC\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>SystemC.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>

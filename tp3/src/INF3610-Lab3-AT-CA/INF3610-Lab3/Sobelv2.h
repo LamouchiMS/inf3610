@@ -41,9 +41,7 @@ class Sobelv2 : public sc_module
 		
 	private:
 		// Process SystemC
-		/*
-			À compléter
-		*/
+		SC_HAS_PROCESS(Sobelv2);
 		
 		void thread(void);
 		uint8_t Sobelv2_operator(const int index, const int imgWidth, uint8_t * image);
