@@ -24,11 +24,6 @@ Sobel::Sobel( sc_module_name name ) : sc_module(name)
 ///////////////////////////////////////////////////////////////////////////////
 Sobel::~Sobel()
 {
-	/*
-	
-	À compléter
-	
-	*/
 }
 
 void Sobel::read(unsigned int add, int& output) {
@@ -86,22 +81,26 @@ void Sobel::thread(void)
 	for (int i = width; i < size - width; i++) {
 		if (!(i % width == 0 || (i % width) == width - 1)) {
 			res[i] = sobel_operator(i, width, image);
-			//cout << atoi((const char*)&res[i]);
 		}
 		else {
 			res[i] = 0;
 		}
+		wait(clk->posedge_event());
 	}
 
 	for (int i = 0; i < width; i++) {
 		res[i] = 0;
 		res[i + size - width] = 0;
+		wait(clk->posedge_event());
 	}
 
 	for (int i = 0; i < size; i += 4) {
-		unsigned int data = res[i] << 24 + res[i + 1] << 16 + res[i + 2] << 8 + res[i + 3];
+		unsigned int data = (res[i] << 24) | (res[i + 1] << 16) | (res[i + 2] << 8) | res[i + 3];
 		write(i + 8, data);
 	}
+	delete image;
+	delete res;
+
 	sc_stop();
 	wait();
 
