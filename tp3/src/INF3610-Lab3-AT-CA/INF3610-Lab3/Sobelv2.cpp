@@ -66,12 +66,12 @@ void Sobelv2::thread(void)
 	for (int i = width + 8; i < size - width + 8; i += width)
 	{
 		unsigned int *addr = (unsigned int *)i;
-		readFromCache(addr, len);
+		readFromCache(*addr, len);
 		int pixels = *addr;
 
 		for (int j = i + 1; j < i + i * width - 1; j++)
 		{
-			res[j] = sobel_operator(j, width, addr);
+			res[j] = Sobelv2_operator(j, width, (uint8_t *) addr);
 		}
 		wait(clk->posedge_event());
 	}
@@ -83,7 +83,6 @@ void Sobelv2::thread(void)
 		write(i + 8, data);
 	}
 
-	delete image;
 	delete res;
 
 	sc_stop();
@@ -92,7 +91,7 @@ void Sobelv2::thread(void)
 
 void Sobelv2::readFromCache(unsigned int &addr, unsigned int len)
 {
-	addressRes.write(addr);
+	addressRes.write(&addr);
 	length.write(len);
 	requestCache.write(true);
 	do

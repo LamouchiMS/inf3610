@@ -42,6 +42,11 @@ int sc_main(int arg_count, char **arg_value)
 	sc_signal<bool, SC_MANY_WRITERS> reqWrite;
 	sc_signal<bool, SC_MANY_WRITERS> ackReaderWriter;
 
+	sc_signal<bool, SC_MANY_WRITERS> reqCache;
+	sc_signal<bool, SC_MANY_WRITERS> ackCache;
+	sc_signal<bool> ackCPU;
+	sc_signal<bool> reqCPU;
+
 	// Connexions
 	reader.clk(clk);
 	reader.data(data);
@@ -57,7 +62,7 @@ int sc_main(int arg_count, char **arg_value)
 	writer.ack(ackReaderWriter);
 	writer.dataPortRAM(dataRAM);
 
-	const bool utiliseCacheMem = false;
+	const bool utiliseCacheMem = true;
 
 	if (!utiliseCacheMem) {
 		Sobel sobel("Sobel");
@@ -69,20 +74,40 @@ int sc_main(int arg_count, char **arg_value)
 		sobel.requestWrite(reqWrite);
 		sobel.ack(ackReaderWriter);
 
-		// Démarrage de l'application
-		cout << "Démarrage de la simulation." << endl;
+		// Dï¿½marrage de l'application
+		cout << "Dï¿½marrage de la simulation." << endl;
 		sc_start(-1, sc_core::sc_time_unit(sim_units));
-		cout << endl << "Simulation s'est terminée à " << sc_time_stamp();
+		cout << endl << "Simulation s'est terminï¿½e ï¿½ " << sc_time_stamp();
 	} else {
 		Sobelv2 sobel("Sobel");
 		CacheMem cacheMem("CacheMem");
 
-		/* à compléter*/
+		sobel.clk(clk);
+		sobel.dataRW(data);
+		sobel.address(address);
+		sobel.requestRead(reqRead);
+		sobel.requestWrite(reqWrite);
+		sobel.ackReaderWriter(ackReaderWriter);
 
-		// Démarrage de l'application
-		cout << "Démarrage de la simulation." << endl;
+		sobel.addressRes(addressData);
+		sobel.length(length);
+		sobel.requestCache(reqCache);
+		sobel.ackCache(ackCache);
+
+		cacheMem.clk(clk);
+		cacheMem.addressData(addressData);
+		cacheMem.length(length);
+		cacheMem.requestFromCPU(reqCPU);
+		cacheMem.ackToCPU(ackCPU);
+		cacheMem.address(address);
+		cacheMem.dataReader(data);
+		cacheMem.requestToReader(reqRead);
+		cacheMem.ackFromReader(ackReaderWriter);
+
+		// Dï¿½marrage de l'application
+		cout << "Dï¿½marrage de la simulation." << endl;
 		sc_start(-1, sc_core::sc_time_unit(sim_units));
-		cout << endl << "Simulation s'est terminée à " << sc_time_stamp();
+		cout << endl << "Simulation s'est terminï¿½e ï¿½ " << sc_time_stamp();
 
 	}
 
